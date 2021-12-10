@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1760343841}
-  CameraRelativeVector: {x: 0, y: 2.5, z: 5}
+  CameraRelativeVector: {x: -5, y: 4.15, z: -5}
 --- !u!1 &213817180
 GameObject:
   m_ObjectHideFlags: 0
