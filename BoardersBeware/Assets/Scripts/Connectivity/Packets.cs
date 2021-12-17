@@ -32,10 +32,22 @@ public struct PlayerState : INetSerializable
     }
 }
 
-public class ClientPlayer
+public struct ClientPlayer : INetSerializable
 {
     public PlayerState state;
     public string username;
+
+    public void Serialize(NetDataWriter writer)
+    {
+        state.Serialize(writer);
+        writer.Put(username);
+    }
+
+    public void Deserialize(NetDataReader reader)
+    {
+        state.Deserialize(reader);
+        username = reader.GetString();
+    }
 }
 
 public class ServerPlayer
@@ -43,6 +55,26 @@ public class ServerPlayer
     public NetPeer peer;
     public PlayerState state;
     public string username;
+}
+
+public class PlayerSendUpdatePacket
+{
+    public Vector3 position { get; set; }
+}
+
+public class PlayerReceiveUpdatePacket
+{
+    public PlayerState[] states { get; set; }
+}
+
+public class PlayerJoinedGamePacket
+{
+    public ClientPlayer player { get; set; }
+}
+
+public class PlayerLeftGamePacket
+{
+    public uint pid { get; set; }
 }
 
 public static class SerializingExtensions
