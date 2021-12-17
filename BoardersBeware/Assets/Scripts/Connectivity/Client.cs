@@ -88,6 +88,11 @@ public class Client : MonoBehaviour, INetEventListener
         }
     }
 
+    private void Start()
+    {
+        Connect("TestPC1");
+    }
+
     private void Update()
     {
         if (client != null)
